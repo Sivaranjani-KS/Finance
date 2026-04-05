@@ -30,8 +30,6 @@ public class Transaction {
     @ManyToOne
     private User user;
 
-    // ✅ GETTERS & SETTERS
-
     public Long getId() {
         return id;
     }
