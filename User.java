@@ -21,8 +21,6 @@ public class User {
     @Pattern(regexp = "VIEWER|ANALYST|ADMIN", message = "Role must be VIEWER, ANALYST, or ADMIN")
     private String role;
 
-    // ✅ GETTERS & SETTERS
-
     public Long getId() {
         return id;
     }
