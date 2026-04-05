@@ -15,10 +15,10 @@ public class UserService {
     @Autowired
     private UserRepository repo;
 
-    // ✅ CREATE
+    //CREATE
     public User create(User user) {
 
-        // 🔍 BASIC VALIDATION (extra safety)
+        
         if (user.getName() == null || user.getName().isBlank()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Name is required");
         }
@@ -34,12 +34,12 @@ public class UserService {
         return repo.save(user);
     }
 
-    // ✅ READ ALL
+    // READ ALL
     public List<User> getAll() {
         return repo.findAll();
     }
 
-    // ✅ GET BY ID (ERROR HANDLING)
+    //GET BY ID (ERROR HANDLING)
     public User getById(Long id) {
         return repo.findById(id)
                 .orElseThrow(() ->
@@ -49,7 +49,7 @@ public class UserService {
                         ));
     }
 
-    // ✅ DELETE USER (OPTIONAL BUT GOOD)
+    // DELETE USER 
     public void delete(Long id) {
 
         if (!repo.existsById(id)) {
