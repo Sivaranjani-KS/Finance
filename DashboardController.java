@@ -34,7 +34,7 @@ public class DashboardController {
             return map;
 
         } catch (Exception e) {
-            // 🔥 Proper error handling
+            
             throw new ResponseStatusException(
                     HttpStatus.INTERNAL_SERVER_ERROR,
                     "Error while generating dashboard summary"
