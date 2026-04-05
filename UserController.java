@@ -15,13 +15,13 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    // ✅ CREATE with validation
+    // CREATE with validation
     @PostMapping
     public User create(@Valid @RequestBody User user) {
         return service.create(user);
     }
 
-    // ✅ READ all users
+    //READ all users
     @GetMapping
     public List<User> getAll() {
         return service.getAll();
