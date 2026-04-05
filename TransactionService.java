@@ -16,10 +16,10 @@ public class TransactionService {
     @Autowired
     private TransactionRepository repo;
 
-    // ✅ CREATE
+    // CREATE
     public Transaction save(Transaction t) {
 
-        // 🔐 ROLE CHECK
+        // ROLE CHECK
         if (t.getUser() != null &&
                 "VIEWER".equalsIgnoreCase(t.getUser().getRole())) {
 
@@ -32,7 +32,7 @@ public class TransactionService {
         return repo.save(t);
     }
 
-    // ✅ READ
+    // READ
     public List<Transaction> getAll() {
         return repo.findAll();
     }
@@ -40,7 +40,7 @@ public class TransactionService {
     // ✅ DELETE
     public void delete(Long id, User user) {
 
-        // 🔐 ROLE CHECK
+        // ROLE CHECK
         if (user != null &&
                 "VIEWER".equalsIgnoreCase(user.getRole())) {
 
@@ -50,7 +50,7 @@ public class TransactionService {
             );
         }
 
-        // 🔍 CHECK IF EXISTS
+        // CHECK IF EXISTS
         if (!repo.existsById(id)) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
@@ -61,10 +61,10 @@ public class TransactionService {
         repo.deleteById(id);
     }
 
-    // ✅ UPDATE
+    // UPDATE
     public Transaction update(Long id, Transaction t) {
 
-        // 🔐 ROLE CHECK
+        // ROLE CHECK
         if (t.getUser() != null &&
                 "VIEWER".equalsIgnoreCase(t.getUser().getRole())) {
 
@@ -74,7 +74,7 @@ public class TransactionService {
             );
         }
 
-        // 🔍 FIND EXISTING
+        // FIND EXISTING
         Transaction existing = repo.findById(id)
                 .orElseThrow(() ->
                         new ResponseStatusException(
@@ -82,7 +82,7 @@ public class TransactionService {
                                 "Transaction not found"
                         ));
 
-        // ✅ UPDATE FIELDS
+        //  UPDATE FIELDS
         existing.setAmount(t.getAmount());
         existing.setType(t.getType());
         existing.setCategory(t.getCategory());
@@ -92,7 +92,7 @@ public class TransactionService {
         return repo.save(existing);
     }
 
-    // ✅ DASHBOARD
+    // DASHBOARD
     public Double income() {
         return repo.getTotalIncome();
     }
